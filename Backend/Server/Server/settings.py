@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     
     # Third Party Liberaries
     'rest_framework',
+    
+    # Costume apps
+    'Blogs.apps.BlogsConfig',
 ]
 
 MIDDLEWARE = [
