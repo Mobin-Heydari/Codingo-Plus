@@ -14,7 +14,8 @@ pip-delete-this-directory.txt
 
 # Distribution / packaging
 .Python
-env/
+venv
+venv/Scripts/
 build/
 develop-eggs/
 dist/
