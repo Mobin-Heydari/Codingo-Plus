@@ -14,8 +14,24 @@
   }
 }
 
+@font-face {
+  font-family: Sahel;
+  src : url('../font/Sahel.woff');
+}
+
+@font-face {
+  font-family: SahelBold;
+  src : url('../font/Sahel-Bold.woff');
+}
+
+@font-face {
+  font-family: SahelBlack;
+  src : url('../font/Sahel-Black.woff');
+}
+
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Sahel;
 }
