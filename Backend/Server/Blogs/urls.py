@@ -1,7 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import BlogViewSet
-from .routers import DefaultRouter  # Import your custom router
+from rest_framework.routers import DefaultRouter
 
 # Create an instance of your custom router
 router = DefaultRouter()
