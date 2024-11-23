@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Third Party Admin Liberaries
+    'jazzmin',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -127,3 +130,42 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+JAZZMIN_SETTINGS = {
+    "site_title": "Codingo AdminPanel",
+    "site_header": "Codingo Plus Administration",
+    "site_brand": "Codingo Plus",
+    "welcome_sign": "Welcome to My Codingo Plus Admin",
+    "copyright": "Codingo Plus",
+    "search_model": "auth.User",  # Set your search model
+    "user_avatar": "path/to/your/avatar.png",  # Path to user avatar image
+
+    # Top menu settings
+    "topmenu_links": [
+        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "Documentation", "url": "https://docs.djangoproject.com/en/stable/", "new_window": True},
+        {"model": "auth.User"},
+        {"model": "auth.Group"},
+    ],
+
+    # Customizing the sidebar
+    "user_menu": "django.contrib.auth.models.User",
+    "show_sidebar": True,
+    "sidebar": True,
+    "sidebar_menu": [
+        {"name": "Dashboard", "url": "admin:index"},
+        {"name": "Blogs", "url": "admin:Blogs_blog_changelist"},
+        {"name": "Users", "url": "admin:auth_user_changelist"},
+    ],
+   # Path to your custom JS
+
+    # Theme settings
+    "theme": "dark",  # Choose from 'default', 'dark', 'light', or custom themes
+    "color_scheme": "default",  # You can set a color scheme here
+
+    # Other settings
+    "show_ui_builder": True,  # Show the UI builder button
+    "show_settings": True,     # Show the settings button
+    "show_logout": True,       # Show the logout button
+}
