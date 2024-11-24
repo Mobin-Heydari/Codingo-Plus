@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # Costume apps
     'Blogs.apps.BlogsConfig',
     'Users.apps.UsersConfig',
+    'Profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [
