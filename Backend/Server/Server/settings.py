@@ -170,3 +170,6 @@ JAZZMIN_SETTINGS = {
     "show_settings": True,     # Show the settings button
     "show_logout": True,       # Show the logout button
 }
+
+# Auth user model
+AUTH_USER_MODEL = 'Users.User'
