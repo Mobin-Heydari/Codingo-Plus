@@ -1,7 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-from Users.models import User
 
 
 
@@ -9,7 +8,7 @@ from Users.models import User
 
 class CustomersProfile(models.Model):
     customer = models.OneToOneField(
-        User,
+        "Users.User",
         on_delete=models.CASCADE,
         related_name="Customer_Profile"
     )
@@ -53,9 +52,15 @@ class EmployeeProfile(models.Model):
         MANAGER = 'MAN', 'Manager'
         
     employee = models.OneToOneField(
-        User,
+        "Users.User",
         on_delete=models.CASCADE,
         related_name="Employee_Profile"
+    )
+    
+    full_name = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True
     )
         
     
@@ -63,6 +68,8 @@ class EmployeeProfile(models.Model):
         max_length=3,
         default=EmployeeStack.DEVELOPER,
         choices=EmployeeStack.choices,
+        blank=True,
+        null=True
     )
     
     job_title = models.CharField(
