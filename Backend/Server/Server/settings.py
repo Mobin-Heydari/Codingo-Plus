@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     
     # Costume apps
     'Blogs.apps.BlogsConfig',
-    'Employees.apps.EmployeesConfig',
+    'Users.apps.UsersConfig',
+    'Profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [
@@ -125,7 +126,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+
 STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -170,3 +175,6 @@ JAZZMIN_SETTINGS = {
     "show_settings": True,     # Show the settings button
     "show_logout": True,       # Show the logout button
 }
+
+# Auth user model
+AUTH_USER_MODEL = 'Users.User'
