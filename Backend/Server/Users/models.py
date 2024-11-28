@@ -36,3 +36,17 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.username
+    
+    # Required methods for admin
+    def has_perm(self, perm, obj=None):
+        return True  # Adjust this as needed for your permission logic
+
+    def has_module_perms(self, app_label):
+        return True  # Adjust this as needed for your permission logic
+
+    def get_all_permissions(self, obj=None):
+        # Return a set of all permissions for the user
+        return set()  # Adjust this to return the actual permissions if you have any
+
+    def get_group_permissions(self, obj=None):
+        return set()  # Return any group permissions if applicable
