@@ -47,7 +47,7 @@ class UserManager(BaseUserManager):
 
         # Grant admin and superuser privileges
         user.is_admin = True
-        user.is_superuser = True
+        user.is_staff = True
         user.save(using=self._db)  # Save the superuser to the database
 
         return user
