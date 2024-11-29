@@ -13,9 +13,7 @@ class UserManager(BaseUserManager):
             raise ValueError('The Email field must be set')
         if password is None:
             raise ValueError('The Password field must be set')
-        if password != password_conf:
-            raise ValidationError('Passwords do not match')  # Ensure this raises a single string message
-
+        
         # Normalize the email address
         email = self.normalize_email(email)
 

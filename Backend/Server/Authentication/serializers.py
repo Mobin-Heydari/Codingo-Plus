@@ -4,6 +4,7 @@ from rest_framework import serializers
 from rest_framework import validators
 
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from Users.models import User
 
@@ -101,6 +102,24 @@ class RegisterSerializer(serializers.Serializer):
             password=validated_data['password'],
             user_type="CST"
         )
-        user.save()
-        return user
+        
+        user.save()  # Save the user to the database
+        
+        # Generate tokens for the user
+        refresh = RefreshToken.for_user(user)
+        
+        # Return user data and tokens
+        return {
+            'user': {
+                'username': user.username,
+                'email': user.email,
+                'user_type': user.user_type,
+                # Add any other user fields you want to return
+            },
+            'tokens': {
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+            }
+        }
+
     
