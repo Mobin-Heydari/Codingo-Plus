@@ -19,15 +19,6 @@ class OneTimePassword(models.Model):
     # Field to store the user's email address
     email = models.EmailField()
     
-    # Field to store the username associated with the OTP
-    username = models.CharField(max_length=40)
-    
-    # Field to store the type of user (e.g., admin, regular)
-    user_type = models.CharField(max_length=3)
-    
-    # Field to store the user's password (consider security implications)
-    password = models.CharField(max_length=16)
-    
     # Unique token field for the OTP
     token = models.CharField(
         max_length=250,
@@ -57,7 +48,7 @@ class OneTimePassword(models.Model):
     # Method to calculate and set the expiration time of the OTP
     def get_expiration(self):
         created = self.created  # Get the creation time
-        expiration = created + timezone.timedelta(minutes=1)  # Set expiration to 1 minute after creation
+        expiration = created + timezone.timedelta(minutes=2)  # Set expiration to 1 minute after creation
         self.expiration = expiration  # Update the expiration field
         self.save()  # Save the changes to the database
         

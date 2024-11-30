@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import get_object_or_404
 
 from rest_framework.views import APIView, Response
 from rest_framework import status 
@@ -56,28 +57,72 @@ class UserRegisterAPIView(APIView):
     # Check if the user is not already authenticated
     permission_classes = [IsNotAuthenticated]
     
+    def post(self, request, token):
+        
+        # Get the OneTimePassword object from the database using the provided token
+        otp = get_object_or_404(OneTimePassword, token=token)
+        
+        if otp:
+            # Serialize the request data using the UserRegisterSerializer
+            serializer = serializers.RegisterSerializer(data=request.data, context={'otp_token' : otp.token})
+            if serializer.is_valid(raise_exception=True):
+                # Saving the user data and getting user and tokens
+                user_data = serializer.create(validated_data=serializer.validated_data, token=token)
+
+                # Return a success response with user data and tokens
+                return Response(
+                    {
+                        'Detail': {
+                            'Message': 'User  created successfully',
+                            'User': user_data['user'],
+                            'Token': user_data['tokens']
+                        }
+                    }, status=status.HTTP_201_CREATED
+                )  
+            else:
+                # Return an error response if the serializer is invalid
+                return Response(
+                    {'Detail': serializer.errors},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+        else:
+            # Return an error response if the OTP does not exist
+            return Response(
+                {'Detail': 'OTP does not exist'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+class OneTimePasswordAPIView(APIView):
+    """
+        API view to generate a one-time password 
+    """
+    
+    # Check if the user is not already authenticated
+    permission_classes = [IsNotAuthenticated]
+    
     def post(self, request):
         """
-        Handle POST request for user registration
+        Handle POST request for one-time password auth
         """
-        # Create a serializer instance with the request data
-        serializer = serializers.RegisterSerializer(data=request.data)
-            
+        # Create an instance of the serializer with the request data
+        serializer = serializers.OneTimePasswordSerializer(data=request.data)
+        
         # Validate the serializer data
         if serializer.is_valid(raise_exception=True):
-           # Saving the user data and getting user and tokens
-            user_data = serializer.create(validated_data=serializer.validated_data)
-
-            # Return a success response with user data and tokens
+            # Call the create method with the validated data
+            otp_data = serializer.create(validated_data=serializer.validated_data)  # Save and get the OTP data
+            
+            # Return a success response with the OTP details
             return Response(
                 {
                     'Detail': {
-                        'Message': 'User  created successfully',
-                        'User': user_data['user'],
-                        'Token': user_data['tokens']
+                        'Message': 'Otp created successfully',
+                        'token': otp_data['token'],  # Assuming otp_data has a token attribute
+                        'code': otp_data['code']       # Assuming otp_data has a code attribute
                     }
                 }, status=status.HTTP_201_CREATED
-            ) 
+            )
         else:
             # Return an error response if the serializer validation fails
             return Response({'Detail': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
