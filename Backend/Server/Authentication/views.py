@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
 
 from rest_framework.views import APIView, Response
 from rest_framework import status 
@@ -113,6 +114,14 @@ class OneTimePasswordAPIView(APIView):
             # Call the create method with the validated data
             otp_data = serializer.create(validated_data=serializer.validated_data)  # Save and get the OTP data
             
+            send_mail(
+                    subject = 'Codingo Plus one time password',
+                    message = f'please enter this code to continue. (code:{otp_data['code']})',
+                    from_email = 'email@hip-hop-tweety.com',
+                    recipient_list = [serializer.validated_data['email']],
+                    fail_silently = False
+            )
+            
             # Return a success response with the OTP details
             return Response(
                 {
@@ -123,6 +132,7 @@ class OneTimePasswordAPIView(APIView):
                     }
                 }, status=status.HTTP_201_CREATED
             )
+            
         else:
             # Return an error response if the serializer validation fails
             return Response({'Detail': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
