@@ -244,3 +244,13 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+# Emailing Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST = 'venus.pws-dns.net'
+EMAIL_HOST_USER = 'email@hip-hop-tweety.com'
+EMAIL_HOST_PASSWORD = 't4xxohmp5o6t'
+EMAIL_PORT = 587
