@@ -4,9 +4,9 @@ from rest_framework import serializers
 # Import the User model from the current application
 from .models import User
 
-# Import profile models and their serializers from the Profiles app
+# Import profile models
 from Profiles.models import EmployeeProfile, CustomersProfile
-from Profiles.serializers import EmployeeProfileSerializer, CustomersProfileSerializer
+
 
 
 
@@ -24,7 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
     
     # Method to retrieve the profile data based on user type
     def get_profile(self, obj):
-        
+        from Profiles.serializers import EmployeeProfileSerializer, CustomersProfileSerializer
         try:
             # Check the user_type to determine which profile to retrieve
             if obj.user_type == 'CST':
