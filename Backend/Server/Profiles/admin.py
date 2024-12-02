@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomersProfile, EmployeeProfile  # Import your profile models
+from .models import CustomersProfile, EmployeeProfile, EmployeeSkils # Import your profile models
 
 class CustomersProfileAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'customer', 'bio')  # Display these fields in the list view
@@ -13,3 +13,5 @@ class EmployeeProfileAdmin(admin.ModelAdmin):
 
 admin.site.register(CustomersProfile, CustomersProfileAdmin)
 admin.site.register(EmployeeProfile, EmployeeProfileAdmin)
+
+admin.site.register(EmployeeSkils)
