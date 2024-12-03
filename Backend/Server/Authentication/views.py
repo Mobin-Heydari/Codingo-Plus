@@ -2,15 +2,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
 
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView, Response
 from rest_framework import status 
 
+from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from . import serializers
-from .models import OneTimePassword
 from .permissions import IsNotAuthenticated
+from .models import OneTimePassword
+from . import serializers
 
 
 
@@ -136,3 +138,22 @@ class OneTimePasswordAPIView(APIView):
         else:
             # Return an error response if the serializer validation fails
             return Response({'Detail': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserLogoutAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        # If you want to blacklist the refresh token
+        refresh_token = request.data.get('refresh')
+
+        if refresh_token:
+            try:
+                # Blacklist the refresh token
+                RefreshToken(refresh_token).blacklist()  # This will blacklist the token
+                return Response({'detail': 'Successfully logged out.'}, status=status.HTTP_205_RESET_CONTENT)
+            except Exception as e:
+                return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        # If no refresh token is provided, just return a success response
+        return Response({'detail': 'Successfully logged out without blacklisting.'}, status=status.HTTP_205_RESET_CONTENT)

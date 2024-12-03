@@ -22,4 +22,7 @@ urlpatterns = [
     
     # one-time-pass
     path('one-time-pass/', views.OneTimePasswordAPIView.as_view(), name="user_one_time_pass"),
+    
+    # Logout
+    path('logout/', views.UserLogoutAPIView.as_view(), name="user_logout"),
 ]
