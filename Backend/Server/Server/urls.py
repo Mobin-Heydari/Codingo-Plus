@@ -11,4 +11,5 @@ urlpatterns = [
     path('users/', include('Users.urls')),
     path('auth/', include('Authentication.urls')),
     path('profile/', include('Profiles.urls')),
+    path('contacts/', include('ContactUs.urls')),
 ]   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
