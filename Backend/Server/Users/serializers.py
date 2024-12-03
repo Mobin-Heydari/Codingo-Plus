@@ -5,7 +5,7 @@ from rest_framework import serializers
 from .models import User
 
 # Import profile models
-from Profiles.models import EmployeeProfile, CustomersProfile
+from Profiles.models import EmployeeProfile, SimpleUserProfile
 
 
 
@@ -24,14 +24,14 @@ class UserSerializer(serializers.ModelSerializer):
     
     # Method to retrieve the profile data based on user type
     def get_profile(self, obj):
-        from Profiles.serializers import EmployeeProfileSerializer, CustomersProfileSerializer
+        from Profiles.serializers import EmployeeProfileSerializer, SimpleUserProfileSerializer
         try:
             # Check the user_type to determine which profile to retrieve
             if obj.user_type == 'CST':
-                # Retrieve the CustomersProfile associated with the user
-                profile = CustomersProfile.objects.get(customer=obj)
+                # Retrieve the SimpleUserProfile associated with the user
+                profile = SimpleUserProfile.objects.get(customer=obj)
                 # Serialize the profile data using the appropriate serializer
-                serializer = CustomersProfileSerializer(instance=profile)
+                serializer = SimpleUserProfileSerializer(instance=profile)
                 
             elif obj.user_type == 'EMP':
                 # Retrieve the EmployeeProfile associated with the user
@@ -43,7 +43,7 @@ class UserSerializer(serializers.ModelSerializer):
                 # Return None or raise an exception for unknown user types
                 return None  # or raise an exception for unknown user_type
                 
-        except (CustomersProfile.DoesNotExist, EmployeeProfile.DoesNotExist):
+        except (SimpleUserProfile.DoesNotExist, EmployeeProfile.DoesNotExist):
             # Return None if the profile does not exist
             return None  # or handle the error accordingly
         except Exception as e:

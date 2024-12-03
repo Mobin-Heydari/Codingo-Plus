@@ -1,6 +1,6 @@
 from django.contrib.auth.models import BaseUserManager
 from django.core.exceptions import ValidationError
-from Profiles.models import CustomersProfile, EmployeeProfile
+from Profiles.models import SimpleUserProfile, EmployeeProfile
 
 
 class UserManager(BaseUserManager):
@@ -52,9 +52,9 @@ class UserManager(BaseUserManager):
 
     def create_profile(self, user, user_type):
         # Create a profile based on the user type
-        if user_type == 'CST':
-            # Create or get a customer profile
-            profile, created = CustomersProfile.objects.get_or_create(customer=user)
+        if user_type == 'SMP':
+            # Create or get a user profile
+            profile, created = SimpleUserProfile.objects.get_or_create(user=user)
             return profile
         elif user_type == 'EMP':
             # Create or get an employee profile

@@ -7,13 +7,13 @@ from . import managers
 class User(AbstractBaseUser):
     
     class UserTypes(models.TextChoices):
-        CUSTOMER = "CST", "Customer"
+        SIMPLE_USER = "SMP", "Simple User"
         EMPLOYEE = "EMP", "Employee"
         ADMIN = "ADM", "Admin"
 
     user_type = models.CharField(
         max_length=3, 
-        default=UserTypes.CUSTOMER,
+        default=UserTypes.SIMPLE_USER,
         choices=UserTypes.choices,
     )
 

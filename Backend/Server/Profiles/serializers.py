@@ -1,22 +1,22 @@
 from rest_framework import serializers
 
-from .models import CustomersProfile, EmployeeProfile, EmployeeSkils
+from .models import SimpleUserProfile, EmployeeProfile, EmployeeSkils
 
 from Users.serializers import UserSerializer
 
 
 
-class CustomersProfileSerializer(serializers.ModelSerializer):
+class SimpleUserProfileSerializer(serializers.ModelSerializer):
     
-    customer = serializers.SerializerMethodField()
+    user = serializers.SerializerMethodField()
     
     class Meta:
-        model = CustomersProfile
-        fields = ['id', 'full_name', 'profile_picture', 'bio', 'customer']
+        model = SimpleUserProfile
+        fields = ['id', 'full_name', 'profile_picture', 'bio', 'user']
         
-    def get_customer(self, obj):
-        return obj.customer.username
-
+    def get_user(self, obj):
+        return obj.user.username
+    
     def update(self, instance, validated_data):
         instance.full_name = validated_data.get('full_name', instance.full_name)
         instance.profile_picture = validated_data.get('profile_picture', instance.profile_picture)
