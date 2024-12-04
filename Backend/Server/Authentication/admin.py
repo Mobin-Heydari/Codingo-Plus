@@ -16,7 +16,7 @@ class OneTimePasswordAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('email', 'code', 'token')
         }),
-        ('Status and Timing', {
+        ('وضعیت و تاریخ انقضا', {
             'fields': ('status', 'expiration')
         }),
     )

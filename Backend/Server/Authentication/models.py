@@ -6,40 +6,43 @@ from django.utils import timezone
 class OneTimePassword(models.Model):
     # Enum for OTP status using Django's TextChoices
     class OtpStatus(models.TextChoices):
-        EXPIRED = 'EXP', 'Expired'  # Represents an expired OTP
-        ACTIVE = 'ACT', 'Active'      # Represents an active OTP
+        EXPIRED = 'EXP', 'منقضی شده'  # Represents an expired OTP
+        ACTIVE = 'ACT', 'فعال'         # Represents an active OTP
     
     # Field to store the status of the OTP (active or expired)
     status = models.CharField(
+        verbose_name="وضعیت",
         max_length=3,
         choices=OtpStatus.choices,
         default=OtpStatus.ACTIVE  # Default status is active
     )
     
     # Field to store the user's email address
-    email = models.EmailField()
+    email = models.EmailField(verbose_name="ایمیل کاربر")
     
     # Unique token field for the OTP
     token = models.CharField(
         max_length=250,
-        unique=True  # Ensures that each token is unique
+        unique=True,  # Ensures that each token is unique
+        verbose_name="توکن"
     )
     
     # Field to store the OTP code (usually a numeric string)
-    code = models.CharField(max_length=6)
+    code = models.CharField(max_length=6, verbose_name="کد OTP")
     
     # Field to store the expiration time of the OTP
     expiration = models.DateTimeField(
         blank=True,
         null=True,
+        verbose_name="زمان انقضا"
     )
     
     # Field to store the creation time of the OTP record
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True, verbose_name="زمان ایجاد")
     
     class Meta:
-        verbose_name = "One-Time Password"  # Human-readable singular name
-        verbose_name_plural = "One-Time Passwords"  # Human-readable plural name
+        verbose_name = "رمز یکبار مصرف"  # Human-readable singular name in Persian
+        verbose_name_plural = "رمزهای یکبار مصرف"  # Human-readable plural name in Persian
         
     # String representation of the OTP model
     def __str__(self):
@@ -48,7 +51,7 @@ class OneTimePassword(models.Model):
     # Method to calculate and set the expiration time of the OTP
     def get_expiration(self):
         created = self.created  # Get the creation time
-        expiration = created + timezone.timedelta(minutes=2)  # Set expiration to 1 minute after creation
+        expiration = created + timezone.timedelta(minutes=2)  # Set expiration to 2 minutes after creation
         self.expiration = expiration  # Update the expiration field
         self.save()  # Save the changes to the database
         

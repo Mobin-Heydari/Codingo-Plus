@@ -4,35 +4,43 @@ from django.db import models
 from . import managers
 
 
-class User(AbstractBaseUser):
+from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin
+from django.db import models
+
+from . import managers
+
+
+class User(AbstractBaseUser , PermissionsMixin):
     
     class UserTypes(models.TextChoices):
-        SIMPLE_USER = "SMP", "Simple User"
-        EMPLOYEE = "EMP", "Employee"
-        ADMIN = "ADM", "Admin"
+        SIMPLE_USER = "SMP", "کاربر ساده"
+        EMPLOYEE = "EMP", "کارمند"
+        ADMIN = "ADM", "مدیر"
 
     user_type = models.CharField(
         max_length=3, 
         default=UserTypes.SIMPLE_USER,
         choices=UserTypes.choices,
+        verbose_name="نوع کاربر"
     )
 
-    email = models.EmailField(unique=True)
-    username = models.CharField(max_length=40, unique=True)
-    joined_date = models.DateField(auto_now_add=True)
+    email = models.EmailField(unique=True, verbose_name="ایمیل")
+    username = models.CharField(max_length=40, unique=True, verbose_name="نام کاربری")
+    joined_date = models.DateField(auto_now_add=True, verbose_name="تاریخ پیوستن")
     
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True, verbose_name="فعال")
+    is_admin = models.BooleanField(default=False, verbose_name="مدیر")
+    is_staff = models.BooleanField(default=False, verbose_name="کارمند")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
 
     objects = managers.UserManager()
+
     class Meta:
         ordering = ['joined_date']
-        verbose_name = "User "
-        verbose_name_plural = "Users"
+        verbose_name = "کاربر"  # Human-readable singular name in Persian
+        verbose_name_plural = "کاربران"  # Human-readable plural name in Persian
 
     def __str__(self):
         return self.username

@@ -20,7 +20,7 @@ class ContactAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('full_name', 'message')
         }),
-        ('Contact Information', {
+        ('اطلاعات تماس', {
             'fields': ('phone', 'email')
         }),
     )

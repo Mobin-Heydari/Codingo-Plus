@@ -18,7 +18,7 @@ class BlogAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('title', 'slug', 'content')
         }),
-        ('Meta Information', {
+        ('اطلاعات اصلی', {
             'fields': ('created', 'updated'),
             'classes': ('collapse',)  # Makes this section collapsible
         }),

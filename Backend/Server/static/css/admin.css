@@ -1,0 +1,23 @@
+@font-face {
+    font-family: Sahel;
+    src : url('../fonts/Sahel.woff');
+}
+  
+@font-face {
+    font-family: SahelBold;
+    src : url('../fonts/Sahel-Bold.woff');
+}
+
+@font-face {
+    font-family: SahelBlack;
+    src : url('../fonts/Sahel-Black.woff');
+}
+
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Sahel;
+    direction: ltr;
+    text-align: left;
+}

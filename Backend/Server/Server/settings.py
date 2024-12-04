@@ -122,9 +122,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa-ir'  # Persian (Iran)
 
-TIME_ZONE = 'UTC'
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),  # Ensure you have a locale directory
+]
+
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -136,6 +140,7 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -147,18 +152,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 JAZZMIN_SETTINGS = {
-    "site_title": "Codingo AdminPanel",
-    "site_header": "Codingo Plus Administration",
-    "site_brand": "Codingo Plus",
-    "welcome_sign": "Welcome to My Codingo Plus Admin",
-    "copyright": "Codingo Plus",
-    "search_model": "auth.User",  # Set your search model
-    "user_avatar": "path/to/your/avatar.png",  # Path to user avatar image
-
+    "site_title": "مدیریت سایت",  # Site title in Persian
+    "site_header": "مدیریت",  # Site header in Persian
+    "site_brand": "کدینگو",  # Site brand in Persian
+    "welcome_sign": "خوش آمدید",  # Welcome sign in Persian
+    "site_logo": "imgs/logo/logo.png",
+    "copyright": "کپی رایت",  # Copyright in Persian
+    "search_model": "auth.User",  # Model to search in admin
+    "user_avatar": "imgs/user/admin.png",  # Path to user avatar image
+    "show_docs": False,
+    
     # Top menu settings
     "topmenu_links": [
-        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"name": "Documentation", "url": "https://docs.djangoproject.com/en/stable/", "new_window": True},
+        {"name": "داشبورد", "url": "admin:index", "permissions": ["auth.view_user"]},  # Dashboard in Persian
         {"model": "auth.User"},
         {"model": "auth.Group"},
     ],
@@ -168,11 +174,10 @@ JAZZMIN_SETTINGS = {
     "show_sidebar": True,
     "sidebar": True,
     "sidebar_menu": [
-        {"name": "Dashboard", "url": "admin:index"},
-        {"name": "Blogs", "url": "admin:Blogs_blog_changelist"},
-        {"name": "Users", "url": "admin:auth_user_changelist"},
+        {"name": "داشبورد", "url": "admin:index"},  # Dashboard in Persian
+        {"name": "وبلاگ‌ها", "url": "admin:Blogs_blog_changelist"},  # Blogs in Persian
+        {"name": "کاربران", "url": "admin:auth_user_changelist"},  # Users in Persian
     ],
-   # Path to your custom JS
 
     # Theme settings
     "theme": "dark",  # Choose from 'default', 'dark', 'light', or custom themes
@@ -182,6 +187,15 @@ JAZZMIN_SETTINGS = {
     "show_ui_builder": True,  # Show the UI builder button
     "show_settings": True,     # Show the settings button
     "show_logout": True,       # Show the logout button
+
+    # RTL and Language settings
+    "default": {
+        "language": "fa",  # Set default language to Persian
+        "rtl": True,       # Enable RTL layout
+    },
+    
+    "custom_css": "css/admin.css",
+    "custom_js": "js/admin.js",
 }
 
 # Auth user model
