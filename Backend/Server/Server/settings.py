@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'Profiles.apps.ProfilesConfig',
     'Authentication.apps.AuthenticationConfig',
     'ContactUs.apps.ContactusConfig',
+    'Projects.apps.ProjectsConfig',
 ]
 
 MIDDLEWARE = [
