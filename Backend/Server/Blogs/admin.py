@@ -24,8 +24,5 @@ class BlogAdmin(admin.ModelAdmin):
         }),
     )
     readonly_fields = ('created', 'updated')
+    prepopulated_fields = {'slug': ('title',)}
 
-    def save_model(self, request, obj, form, change):
-        if not change:  # If the object is new, set created_at
-            obj.created_at = timezone.now()
-        super().save_model(request, obj, form, change)

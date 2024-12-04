@@ -37,4 +37,4 @@ class Contact(models.Model):
 
     
     def __str__(self):
-        return f"{self.full_name} {self.massage}"
+        return f"{self.full_name} {self.message}"

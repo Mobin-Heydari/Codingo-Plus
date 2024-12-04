@@ -31,25 +31,6 @@ class SimpleUserProfile(models.Model):
         verbose_name_plural = 'Simple User Profiles'
 
 
-class EmployeeSkils(models.Model):
-    
-    """
-        Model representing a skill associated with an employee.
-    """
-    
-    skill = models.CharField(max_length=255)
-    
-    mastery = models.IntegerField(
-        validators=[
-            MinValueValidator(0),  # Minimum mastery value is 0
-            MaxValueValidator(100)  # Maximum mastery value is 100
-        ]
-    )
-
-    class Meta:
-        verbose_name = 'Employee Skill'
-        verbose_name_plural = 'Employee Skills'
-
 
 class EmployeeProfile(models.Model):
     
@@ -97,14 +78,34 @@ class EmployeeProfile(models.Model):
         upload_to='profile_pictures/employees-profiles/'
     )
     
-    skils = models.ManyToManyField(
-        EmployeeSkils,
-        blank=True,
-        related_name='employee_skills',
-    )
-    
     years_of_experience = models.PositiveIntegerField(default=1)  # Default experience is set to 1 year
 
     class Meta:
         verbose_name = 'Employee Profile'
         verbose_name_plural = 'Employee Profiles'
+        
+
+
+class EmployeeSkills(models.Model):
+    
+    """
+        Model representing a skill associated with an employee.
+    """
+    employee = models.ForeignKey(
+        EmployeeProfile,
+        on_delete=models.CASCADE,
+        related_name='employee_skills',
+    )
+    
+    skill = models.CharField(max_length=255)
+    
+    mastery = models.IntegerField(
+        validators=[
+            MinValueValidator(0),  # Minimum mastery value is 0
+            MaxValueValidator(100)  # Maximum mastery value is 100
+        ]
+    )
+
+    class Meta:
+        verbose_name = 'Employee Skill'
+        verbose_name_plural = 'Employee Skills'

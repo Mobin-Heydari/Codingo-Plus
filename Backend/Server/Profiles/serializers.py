@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import SimpleUserProfile, EmployeeProfile, EmployeeSkils
+from .models import SimpleUserProfile, EmployeeProfile, EmployeeSkills
 
 from Users.serializers import UserSerializer
 
@@ -25,10 +25,10 @@ class SimpleUserProfileSerializer(serializers.ModelSerializer):
         return instance
 
 
-class EmployeeSkilsSerializer(serializers.ModelSerializer):
+class EmployeeSkillsSerializer(serializers.ModelSerializer):
     
     class Meta:
-        model = EmployeeSkils
+        model = EmployeeSkills
         fields = ['skill', 'mastery']
 
 
