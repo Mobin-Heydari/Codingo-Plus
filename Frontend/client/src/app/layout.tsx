@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./assets/css/globals.css";
 import Image from 'next/image';
+import Header from "@/components/ui/Header";
 
 export const metadata: Metadata = {
   title: "کدینگو",
@@ -21,6 +22,7 @@ export default function RootLayout({
         <link rel="icon" href="/imgs/logo/logo.png" />
       </head>
       <body className="bg-background">
+        <Header></Header>
         {children}
       </body>
     </html>

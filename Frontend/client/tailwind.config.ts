@@ -16,7 +16,11 @@ export default {
         hover: "#0056B3",
         success: "#218838",
       },
-      // Add other theme extensions here
+      
+      boxShadow: {
+        'custom-light': '0 4px 6px rgba(189, 188, 184, 0.1)', // Light shadow with RGB
+        'custom-dark': '0 4px 6px rgba(189, 188, 184, 0.5)', // Dark shadow with RGB
+      },
     },
   },
   plugins: [],
