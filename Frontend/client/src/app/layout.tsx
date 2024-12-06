@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./assets/css/globals.css";
 import Image from 'next/image';
 import Header from "@/components/ui/Header";
+import Footer from "@/components/ui/footer";
 
 export const metadata: Metadata = {
   title: "کدینگو",
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className="bg-background">
         <Header></Header>
         {children}
+        <Footer></Footer>
       </body>
     </html>
   );
