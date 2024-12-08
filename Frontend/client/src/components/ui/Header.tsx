@@ -16,9 +16,9 @@ export default function Header() {
     return (
         <nav className="flex items-center justify-between p-5 bg-white shadow-custom-dark m-5 rounded-3xl">
             <div className="logo">
-            <Image src={logo} width={100} height={50} alt="codingo plus" />
+            <Image src={logo} width={120} height={50} alt="codingo plus" />
             </div>
-                <ul className="hidden md:flex justify-between w-3/5"> {/* This adds space between the list items */}
+                <ul className="hidden lg:flex justify-between lg:w-3/5"> {/* This adds space between the list items */}
                     <li><a href="#" className="text-lg hover:text-primary primary-transitsion">طراحی سایت</a></li>
                     <li><a href="#" className="text-lg hover:text-primary primary-transitsion">طراحی ابلیکیشن</a></li>
                     <li><a href="#" className="text-lg hover:text-primary primary-transitsion">نمونه کار ها</a></li>
@@ -26,12 +26,12 @@ export default function Header() {
                     <li><a href="#" className="text-lg hover:text-primary primary-transitsion">درباره ما</a></li>
                     <li><a href="#" className="text-lg hover:text-primary primary-transitsion">تماس با ما</a></li>
                 </ul>
-            <div className="hidden md:block">
+            <div className="hidden lg:inline-block">
                 <button className="ml-4 px-4 py-2 text-lg text-text bg-primary rounded-2xl hover:bg-secondary hover:text-white primary-transitsion">
                     دریافت مشاوره <span className="">رایگان</span>
                 </button>
             </div>
-            <div className="md:hidden">
+            <div className="lg:hidden">
                 <button onClick={toggleSidebar} className="p-2 text-text hover:text-primary primary-transitsion">
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
