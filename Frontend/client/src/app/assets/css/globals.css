@@ -35,7 +35,7 @@ body {
 }
 
 
-.primary-transitsion {
+.primary- {
   transition: 0.5s ease, transform 0.5s ease;
 }
 
