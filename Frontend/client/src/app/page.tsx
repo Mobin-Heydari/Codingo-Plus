@@ -1,6 +1,11 @@
 import Image from "next/image";
 import codingo_poster from '../assets/imgs/home/codingo-poster.png';
 import web_card from '../assets/imgs/home/web.jpg';
+import testing from '../assets/imgs/home/testing.png';
+import server from '../assets/imgs/home/server.png'
+import coding from '../assets/imgs/home/coding.png'
+import ui_ux from '../assets/imgs/home/Ui-Ux.png'
+import support from '../assets/imgs/home/support.png'
 
 export default function Home() {
   return (
@@ -108,10 +113,74 @@ export default function Home() {
               <p className="text-sm text-justify p-2">texts here</p>
             </div>
           </div>
-
         {/* Add more cards as needed */}
         </div>
+      </section>
+      {/* Platform Development Process Section */}
+      <section>
 
+        <div>
+          <h3>فرآیند طراحی و توسعه پلتفرم</h3> 
+          <p>مراحل سفارش, طراحی, توسعه و تست پلتفرم دیجتال شما در مجموعه کدینگو به صورت کامل و اطلاعات دقیق</p>
+        </div>
+
+        <div>
+          <div>
+            <div>
+              <Image src={support} alt=""/>
+            </div>
+            <h5>دریافت مشاوره رایگان</h5>
+            <p>شناسایی نیاز کسب وکار شما</p>
+            <p>آنالیز رقابای شما</p>
+            <p>پردازش ایده های نوین و خلاقانه</p>
+            <p>تایید و تصویب طرح کلی</p>
+          </div>
+
+          <div>
+            <div>
+              <Image src={ui_ux} alt=""/>
+            </div>
+            <h5>طراحی UiوUx</h5>
+            <p>انتخاب تم رنگی و طرح بصری با توجه به کسب وکار شما</p>
+            <p>طراحی طرح UiوUx</p>
+            <p>ادیت و اصلاح طرح UiوUx</p>
+            <p>تایید و تصویب طرح UiوUx</p>
+          </div>
+
+          <div>
+            <div>
+              <Image src={coding} alt=""/>
+            </div>
+            <h5>توسعه و پیاده سازی</h5>
+            <p>پیاده سازی الگریتم ها</p>
+            <p>توسعه ‌Back-end و API</p>
+            <p>توسعه Front-end</p>
+            <p>تست و اطمینان از کیفیت و سرعت پلتفرم</p>
+          </div>
+
+          <div>
+            <div>
+              <Image src={testing} alt=""/>
+            </div>
+            <h5>تست و تضمین کیفیت</h5>
+            <p>تست های خودکار</p>
+            <p>تست سرعت وبارگزاری</p>
+            <p>تست نفوز و امنیت</p>
+            <p>برطرف کردن مشکلات احتمالی</p>
+          </div>
+          
+          <div>
+            <div>
+              <Image src={server} alt=""/>
+            </div>
+            <h5>راه اندازی و پشتیبانی رایگان یکساله</h5> 
+            <p>تهیه ی سرور و راه اندازی آن</p>
+            <p>بهینه سازی سرور</p>
+            <p>بالا بردن امنیت سرور</p>
+            <p>پشتیبانی بیت و چهار ساعته رایگان به مدت یک سال</p>
+          </div>
+
+        </div>
       </section>
     </main>
   );
