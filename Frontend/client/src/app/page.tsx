@@ -116,71 +116,107 @@ export default function Home() {
         {/* Add more cards as needed */}
         </div>
       </section>
+      
       {/* Platform Development Process Section */}
-      <section>
+      <section className="flex justify-evenly flex-col gap-12 p-8 max-sm:p-0 shadow-custom-light my-12">
 
-        <div>
-          <h3>فرآیند طراحی و توسعه پلتفرم</h3> 
-          <p>مراحل سفارش, طراحی, توسعه و تست پلتفرم دیجتال شما در مجموعه کدینگو به صورت کامل و اطلاعات دقیق</p>
+        <div className="text-center text-text flex flex-col justify-between gap-3 mb-8">
+          <div>
+            <h3 className="text-3xl text-secondary p-3 m-3 rounded border-r-4 border-r-secondary inline-block font-bold">مراحل طراحی و توسعه سایت در مجموعه <span className="text-primary">کدینگو پلاس</span></h3>
+          </div>
+          <div className="">
+            <h4 className="text-2xl p-3 m-2 font-bold rounded border-r-4 border-r-primary inline-block">طراحیو توسعه انواع سایت و اپلیکیشن در پنج مرحله <span className="text-secondary">:</span> <span className="text-primary">دریافت مشاوره</span> ، <span className="text-secondary">طراحی</span>، <span className="text-primary">توسعه و کدنویسی</span> ، <span className="text-primary">تست</span> و <span className="text-secondary">راه اندازی و پشتیبانی</span></h4>
+          </div>
         </div>
 
-        <div>
-          <div>
-            <div>
-              <Image src={support} alt=""/>
+          <div className="flex justify-evenly flex-wrap gap-x-5 gap-y-8">
+            
+            <div className="flex justify-between flex-col p-2 rounded-3xl shadow-custom-light border-r-4 border-r-primary w-full lg:w-1/6 md:w-1/3">
+              <div className="flex flex-col justify-between p-2 my-2">
+                <div className="p-3">
+                  <Image className="justify-self-center" src={support} width={50} alt="مشاوره"/>
+                </div>
+                <div className="p-3">
+                  <h6 className="text-center text-xl text-secondary font-bold"><span className="text-primary">1.</span> دریافت مشاوره</h6>
+                </div>
+              </div>
+              <div className="flex justify-between flex-col gap-y-5 p-2 text-lg font-bold">
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">شناسایی نیاز کسب وکار شما</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">آنالیز رقابای شما</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">پردازش ایده های نوین و خلاقانه</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">تایید و تصویب طرح کلی</p>
+              </div>
             </div>
-            <h5>دریافت مشاوره رایگان</h5>
-            <p>شناسایی نیاز کسب وکار شما</p>
-            <p>آنالیز رقابای شما</p>
-            <p>پردازش ایده های نوین و خلاقانه</p>
-            <p>تایید و تصویب طرح کلی</p>
-          </div>
 
-          <div>
-            <div>
-              <Image src={ui_ux} alt=""/>
+            <div className="flex justify-between flex-col p-2 rounded-3xl shadow-custom-light border-r-4 border-r-primary w-full lg:w-1/6 md:w-1/3">
+              <div className="flex flex-col justify-between p-2 my-2">
+                <div className="p-3">
+                  <Image className="justify-self-center" width={50} src={ui_ux} alt=""/>
+                </div>
+                <div className="p-3">
+                  <h6 className="text-center text-xl text-secondary font-bold"><span className="text-primary">2.</span>طراحی (Ui , Ux)</h6>
+                </div>
+              </div>
+              <div className="flex justify-between flex-col gap-y-5 p-2 text-lg font-bold">
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">انتخاب تم رنگی و طرح بصری</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">طراحی طرح UiوUx</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">ادیت و اصلاح طرح UiوUx</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">تایید و تصویب طرح UiوUx</p>
+              </div>
             </div>
-            <h5>طراحی UiوUx</h5>
-            <p>انتخاب تم رنگی و طرح بصری با توجه به کسب وکار شما</p>
-            <p>طراحی طرح UiوUx</p>
-            <p>ادیت و اصلاح طرح UiوUx</p>
-            <p>تایید و تصویب طرح UiوUx</p>
-          </div>
 
-          <div>
-            <div>
-              <Image src={coding} alt=""/>
+            <div className="flex justify-between flex-col p-2 rounded-3xl shadow-custom-light border-r-4 border-r-primary w-full lg:w-1/6 md:w-1/3">
+              <div className="flex flex-col justify-between p-2 my-2">
+                <div className="p-3">
+                  <Image className="justify-self-center" width={50} src={coding} alt=""/>
+                </div>
+                <div className="p-3">
+                  <h6 className="text-center text-xl text-secondary font-bold"><span className="text-primary">3.</span>توسعه و کدنویسی</h6>
+                </div>
+              </div>
+              <div className="flex justify-between flex-col gap-y-5 p-2 text-lg font-bold">
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">پیاده سازی الگریتم ها</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">توسعه ‌Back-end و API</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">راه اندازی دیتا بیس</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">توسعه Front-end</p>
+              </div>
             </div>
-            <h5>توسعه و پیاده سازی</h5>
-            <p>پیاده سازی الگریتم ها</p>
-            <p>توسعه ‌Back-end و API</p>
-            <p>توسعه Front-end</p>
-            <p>تست و اطمینان از کیفیت و سرعت پلتفرم</p>
-          </div>
 
-          <div>
-            <div>
-              <Image src={testing} alt=""/>
+            <div className="flex justify-between flex-col p-2 rounded-3xl shadow-custom-light border-r-4 border-r-primary w-full lg:w-1/6 md:w-1/3">
+              <div className="flex flex-col justify-between p-2 my-2">
+                <div className="p-3">
+                  <Image className="justify-self-center" width={50} src={testing} alt=""/>
+                </div>
+                <div className="p-3">
+                  <h6 className="text-center text-xl text-secondary font-bold"><span className="text-primary">4.</span>تست و تضمین کیفیت</h6>
+                </div>
+              </div>
+              <div className="flex justify-between flex-col gap-y-5 p-2 text-lg font-bold">
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">تست های خودکار</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">تست سرعت وبارگزاری</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">تست نفوز و امنیت</p>
+                <p className="text-justify p-1 max-sm:text-center max-md:text-center">برطرف کردن مشکلات احتمالی</p>
+              </div>
             </div>
-            <h5>تست و تضمین کیفیت</h5>
-            <p>تست های خودکار</p>
-            <p>تست سرعت وبارگزاری</p>
-            <p>تست نفوز و امنیت</p>
-            <p>برطرف کردن مشکلات احتمالی</p>
-          </div>
-          
-          <div>
-            <div>
-              <Image src={server} alt=""/>
+            
+            <div className="flex justify-between flex-col p-2 rounded-3xl shadow-custom-light border-r-4 border-r-primary w-full lg:w-1/6 md:w-1/3">
+              <div className="flex flex-col justify-between p-2 my-2">
+                <div className="p-3">
+                  <Image className="justify-self-center" width={50} src={server} alt=""/>
+                </div>
+                <div className="p-3">
+                  <h6 className="text-center text-xl text-secondary font-bold"><span className="text-primary">5.</span>راه اندازی و پشتیبانی رایگان</h6>
+                </div>
+              </div>
+              <div className="flex justify-between flex-col gap-y-5 p-2 text-lg font-bold">
+                <p className="text-justify p-a max-sm:text-center max-md:text-center">تهیه ی سرور و راه اندازی آن</p>
+                <p className="text-justify p-a max-sm:text-center max-md:text-center">بهینه سازی سرور</p>
+                <p className="text-justify p-a max-sm:text-center max-md:text-center">بالا بردن امنیت سرور</p>
+                <p className="text-justify p-a max-sm:text-center max-md:text-center">پشتیبانی بیست و چهار ساعته رایگان </p>
+              </div>
             </div>
-            <h5>راه اندازی و پشتیبانی رایگان یکساله</h5> 
-            <p>تهیه ی سرور و راه اندازی آن</p>
-            <p>بهینه سازی سرور</p>
-            <p>بالا بردن امنیت سرور</p>
-            <p>پشتیبانی بیت و چهار ساعته رایگان به مدت یک سال</p>
-          </div>
 
-        </div>
+          </div>   
       </section>
     </main>
   );
