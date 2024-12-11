@@ -7,7 +7,11 @@ import coding from '../assets/imgs/home/coding.png'
 import ui_ux from '../assets/imgs/home/Ui-Ux.png'
 import support from '../assets/imgs/home/support.png'
 
-import logo from '../assets/imgs/logo/logo.png'
+import ProjectsSection from "@/components/ui/home/Projects-Section";
+
+
+
+
 
 export default function Home() {
   return (
@@ -221,7 +225,7 @@ export default function Home() {
           </div>   
       </section>
 
-      {/* Projects Section */}
+      {/* Projects Section
       <section>
         <div>
           <div>
@@ -234,9 +238,9 @@ export default function Home() {
             </p>
           </div>
         </div>
-        {/* card container */}
+        card container
         <div>
-          {/* cards */}
+          cards
           <div>
             <div>
               <span>
@@ -255,9 +259,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
         </div>
-      </section>
+      </section> */}
+      <ProjectsSection></ProjectsSection>
     </main>
   );
 }
