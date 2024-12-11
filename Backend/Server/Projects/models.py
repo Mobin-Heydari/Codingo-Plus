@@ -5,7 +5,7 @@ from django.db import models
 class Category(models.Model):
     
     category = models.CharField(
-        verbose_name="Category",
+        verbose_name="دسته بندی",
         max_length=100,
         unique=True,
     )
@@ -22,6 +22,14 @@ class Category(models.Model):
         blank=True,
         null=True,
     )
+    
+    class Meta:
+        verbose_name = "دسته بندی"
+        verbose_name_plural = "دسته بندی ها"
+        
+    def __str__(self):
+        return self.category
+    
 
 
 
