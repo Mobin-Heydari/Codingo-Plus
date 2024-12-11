@@ -7,6 +7,8 @@ import coding from '../assets/imgs/home/coding.png'
 import ui_ux from '../assets/imgs/home/Ui-Ux.png'
 import support from '../assets/imgs/home/support.png'
 
+import logo from '../assets/imgs/logo/logo.png'
+
 export default function Home() {
   return (
     <main className="flex flex-col justify-evenly">
@@ -217,6 +219,44 @@ export default function Home() {
             </div>
 
           </div>   
+      </section>
+
+      {/* Projects Section */}
+      <section>
+        <div>
+          <div>
+            <Image src={logo} alt="codingo" width={100}/>
+            <h4> نمونه کارهای برتر مجموعه کدینگو</h4>
+          </div>
+          <div>
+            <p>
+            برای برسی کامل و دقیق نمونه کار های اخیر مجموعه کدینگو <span><a href="">کلیک کنید</a></span>
+            </p>
+          </div>
+        </div>
+        {/* card container */}
+        <div>
+          {/* cards */}
+          <div>
+            <div>
+              <span>
+                دسته بندی نمونه کار
+              </span>
+            </div>
+            <div>
+              <Image src="" alt=""></Image>
+            </div>
+            <div>
+              <h6>عنوان</h6>
+              <p>توضیحات</p>
+              <div>
+                <a href="">مشاهده دمو</a>
+                <a href="">توضیحات</a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
       </section>
     </main>
   );
