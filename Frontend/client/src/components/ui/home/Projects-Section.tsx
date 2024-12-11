@@ -1,18 +1,40 @@
 "use client";
 
-import React, { useState } from 'react';
-import Image from 'next/image'; // Assuming you're using Next.js for Image component
-import logo from '../../../assets/imgs/logo/logo.png'; // Make sure to import your logo image
-
-const projectsData = [
-  { id: 1, category: 'Web Development', title: 'Project 1', description: 'Description 1', demoLink: '#', detailsLink: '#' },
-  { id: 2, category: 'Mobile Development', title: 'Project 2', description: 'Description 2', demoLink: '#', detailsLink: '#' },
-  { id: 3, category: 'Web Development', title: 'Project 3', description: 'Description 3', demoLink: '#', detailsLink: '#' },
-  // Add more projects as needed
-];
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import logo from '../../../assets/imgs/logo/logo.png';
+import { Project } from '@/types/project';
+import { Category } from '@/types/category';
 
 const ProjectsSection = () => {
+  const [projectsData, setProjectsData] = useState<Project[]>([]);
+  const [categoriesData, setCategoriesData] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/projects/'); // Adjust the URL as needed
+        const data: Project[] = await response.json();
+        setProjectsData(data);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
+
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/categories/'); // Adjust the URL as needed
+        const data: Category[] = await response.json();
+        setCategoriesData(data);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchProjects();
+    fetchCategories();
+  }, []);
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
@@ -35,9 +57,11 @@ const ProjectsSection = () => {
       </div>
       {/* Category Buttons */}
       <div className="flex justify-center mb-6">
-        <button onClick={() => handleCategoryChange('All')} className="mx-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">همه</button>
-        <button onClick={() => handleCategoryChange('Web Development')} className="mx-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">توسعه وب</button>
-        <button onClick={() => handleCategoryChange('Mobile Development')} className="mx-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">توسعه موبایل</button>
+        {categoriesData.map(category => (
+          <button key={category.id} onClick={() => handleCategoryChange(category.category)} className="mx-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+            {category.category}
+          </button>
+        ))}
       </div>
       {/* Card Container */}
       <div className="flex flex-wrap justify-center">
@@ -47,14 +71,14 @@ const ProjectsSection = () => {
               <span className="text-sm text-gray-500">دسته بندی: {project.category}</span>
             </div>
             <div className="mb-4">
-              <Image src="" alt="" width={300} height={200} className="rounded" /> {/* Add a valid image source for each project */}
+              <Image src={project.image} alt={project.title} width={300} height={200} className="rounded" />
             </div>
             <div>
               <h6 className="text-lg font-semibold text-gray-800">{project.title}</h6>
               <p className="text-gray-600">{project.description}</p>
               <div className="mt-4">
-                <a href={project.demoLink} className="text-blue-500 hover:underline mr-2">مشاهده دمو</a>
-                <a href={project.detailsLink} className="text-blue-500 hover:underline">توضیحات</a>
+                <a href={project.url} className="text-blue-500 hover:underline mr-2">مشاهده دمو</a>
+                <a href="" className="text-blue-500 hover:underline">توضیحات</a>
               </div>
             </div>
           </div>
