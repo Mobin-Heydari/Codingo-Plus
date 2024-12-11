@@ -2,6 +2,28 @@ from django.db import models
 
 
 
+class Category(models.Model):
+    
+    category = models.CharField(
+        verbose_name="Category",
+        max_length=100,
+        unique=True,
+    )
+    
+    slug = models.SlugField(
+        verbose_name="اسلاگ",
+        max_length=100,
+        unique=True,
+    )
+    
+    image = models.ImageField(
+        verbose_name="تصویر",
+        upload_to="categories/images/",
+        blank=True,
+        null=True,
+    )
+
+
 
 class Project(models.Model):
     
@@ -10,6 +32,12 @@ class Project(models.Model):
         COMPLETED = 'Completed', 'تکمیل شده'
         PENDING = 'Pending', 'در انتظار'
         CANCELED = 'Canceled', 'لغو شده'
+    
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        verbose_name="Category",
+    )
         
     title = models.CharField(max_length=200, verbose_name="عنوان")
     
