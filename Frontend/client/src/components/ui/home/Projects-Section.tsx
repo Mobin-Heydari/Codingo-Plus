@@ -14,7 +14,7 @@ const ProjectsSection = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/projects/'); // Adjust the URL as needed
+        const response = await fetch('http://localhost:8000/projects/'); // Adjust the URL as needed
         const data: Project[] = await response.json();
         setProjectsData(data);
       } catch (error) {
@@ -24,14 +24,14 @@ const ProjectsSection = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/categories/'); // Adjust the URL as needed
+        const response = await fetch('http://localhost:8000/categories/'); // Adjust the URL as needed
         const data: Category[] = await response.json();
         setCategoriesData(data);
       } catch (error) {
         console.error('Error fetching categories:', error);
       }
     };
-
+    
     fetchProjects();
     fetchCategories();
   }, []);
