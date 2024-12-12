@@ -71,7 +71,14 @@ const ProjectsSection = () => {
               <span className="text-sm text-gray-500">دسته بندی: {project.category}</span>
             </div>
             <div className="mb-4">
-              <Image src={project.image} alt={project.title} width={300} height={200} className="rounded" />
+            <Image
+              loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality}`}
+              src={project.image_url}
+              alt={project.title}
+              width={300}
+              height={200}
+              className="rounded"
+            />
             </div>
             <div>
               <h6 className="text-lg font-semibold text-gray-800">{project.title}</h6>
