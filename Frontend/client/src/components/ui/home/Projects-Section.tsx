@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import logo from '../../../assets/imgs/logo/logo.png';
 import { Project } from '@/types/project';
 import { Category } from '@/types/category';
 
@@ -45,47 +44,53 @@ const ProjectsSection = () => {
     : projectsData.filter(project => project.category === selectedCategory);
 
   return (
-    <section className="p-6 bg-gray-100">
-      <div className="text-center mb-6">
-        <Image src={logo} alt="codingo" width={100} height={100} />
-        <h4 className="text-2xl font-bold text-gray-800">نمونه کارهای برتر مجموعه کدینگو</h4>
+    <section className="flex flex-col p-8 justify-around max-sm:p-2 my-12">
+      <div className="flex justify-center p-4 m-6">
+        <h4 className="text-3xl text-secondary font-bold p-2 border-r-4 border-r-primary">نمونه کارهای برتر مجموعه <span className="text-primary">کدینگو</span></h4>
       </div>
-      <div className="text-center mb-4">
-        <p className="text-gray-600">
-          برای برسی کامل و دقیق نمونه کار های اخیر مجموعه کدینگو <span><a href="" className="text-blue-500 hover:underline">کلیک کنید</a></span>
-        </p>
+      <div className="flex justify-center p-2">
+        <p className="text-xl font-bold p-2 border-r-4 border-r-secondary">برای برسی کامل و دقیق نمونه کار های اخیر مجموعه کدینگو <a href="" className="text-xl text-secondary font-bold p-2 px-2 hover:text-primary primary-transitsion">کلیک کنید</a></p>
+        
       </div>
       {/* Category Buttons */}
       <div className="flex justify-center mb-6">
         {categoriesData.map(category => (
-          <button key={category.id} onClick={() => handleCategoryChange(category.category)} className="mx-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-            {category.category}
-          </button>
+          <button
+            key={category.id}
+            onClick={() => handleCategoryChange(category.category)}
+            className={`p-2 my-10 text-3xl font-bold border-primary hover:text-primary primary-transition ${
+              selectedCategory === category.category ? 'text-primary' : 'text-secondary'
+            }`}
+          >
+          {category.category}
+        </button>
         ))}
       </div>
       {/* Card Container */}
-      <div className="flex flex-wrap justify-center">
+      <div className="flex justify-evenly flex-wrap gap-x-2 gap-y-7 p-2">
         {filteredProjects.map(project => (
-          <div key={project.id} className="bg-white border border-gray-300 rounded-lg shadow-md m-2 p-4 w-80 hover:shadow-lg transition-shadow duration-200">
-            <div className="mb-2">
-              <span className="text-sm text-gray-500">دسته بندی: {project.category}</span>
+          <div key={project.id} className="shadow-custom-dark rounded-3xl flex flex-col justify-evenly p- w-full sm:w-full md:w-1/2 lg:w-1/3 gap-4">
+            <div className="py-2 mt-4">
+              <span className="text-text shadow-custom-light text-xl font-bold pl-2 rounded-l-full bg-primary">{project.category}</span>
             </div>
-            <div className="mb-4">
-            <Image
-              loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality}`}
-              src={project.image_url}
-              alt={project.title}
-              width={300}
-              height={200}
-              className="rounded"
-            />
+            <div className="">
+              <Image
+                loader={({ src, width, quality }) => `${src}?w=${width}&q=${quality}`}
+                src={project.image_url}
+                alt={project.title}
+                width={700}
+                height={200}
+                className="rounded-xl"
+              />
             </div>
-            <div>
-              <h6 className="text-lg font-semibold text-gray-800">{project.title}</h6>
-              <p className="text-gray-600">{project.description}</p>
-              <div className="mt-4">
-                <a href={project.url} className="text-blue-500 hover:underline mr-2">مشاهده دمو</a>
-                <a href="" className="text-blue-500 hover:underline">توضیحات</a>
+            <div className='flex flex-col justify-evenly items-center text-center gap-4'>
+              <a href="" className="rounded-md p-2">
+                <h6 className="text-xl text-secondary hover:text-primary primary-transitsion font-bold">{project.title}</h6>
+              </a>
+              <p className="text-text text-justify">{project.description}</p>
+              <div className="flex justify-evenly gap-5 font-bold p-2 my-2">
+                <a href={project.url} className="p-2 text-primary shadow-custom-dark rounded-2xl hover:bg-white primary-transitsion">مشاهده دمو</a>
+                <a href="" className="p-2 text-text shadow-custom-dark rounded-2xl hover:bg-white hover:text-secondary primary-transitsion">مطالب بیشتر</a>
               </div>
             </div>
           </div>
