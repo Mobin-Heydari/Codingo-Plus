@@ -16,7 +16,7 @@ class BlogAdmin(admin.ModelAdmin):
     ordering = ['-created']  # Order by creation date descending
     fieldsets = (
         (None, {
-            'fields': ('title', 'slug', 'content')
+            'fields': ('title', 'slug', 'content', 'category')
         }),
         ('اطلاعات اصلی', {
             'fields': ('created', 'updated'),
@@ -26,3 +26,7 @@ class BlogAdmin(admin.ModelAdmin):
     readonly_fields = ('created', 'updated')
     prepopulated_fields = {'slug': ('title',)}
 
+@admin.register(models.Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['category', 'slug']
+    prepopulated_fields = {'slug': ('category',)}
