@@ -1,10 +1,14 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.status import *
 
-from .models import Blog, BlogSection
-from .serializers import BlogSerializer, BlogSectionSerializer
+from .models import Blog, BlogSection, Category
+from .serializers import BlogSerializer, BlogSectionSerializer, CategorySerializer
+
+
+
 
 # ViewSet for handling Blog-related requests
 class BlogViewSet(ViewSet):
@@ -29,4 +33,28 @@ class BlogViewSet(ViewSet):
         serializer = BlogSerializer(blog)
         
         # Return the serialized data as a response
+        return Response(serializer.data)
+
+
+
+class CategoryListAPIView(APIView):
+    
+    def get(self, request):
+        # Get all queryset
+        queryset = Category.objects.all()
+        # Serializing these queries
+        serializer = CategorySerializer(queryset, many=True)
+        # Returning the response
+        return Response(serializer.data)
+    
+
+
+class CategoryDetailAPIView(APIView):
+    
+    def get(self, request, slug):
+        # Get all query
+        query = get_object_or_404(Category, slug=slug)
+        # Serializing the query
+        serializer = CategorySerializer(query)
+        # Returning the response
         return Response(serializer.data)
