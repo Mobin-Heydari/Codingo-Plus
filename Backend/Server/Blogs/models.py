@@ -1,9 +1,41 @@
 from django.db import models
 
-
+class Category(models.Model):
+    
+    category = models.CharField(
+        verbose_name="دسته بندی",
+        max_length=100,
+        unique=True,
+    )
+    
+    slug = models.SlugField(
+        verbose_name="اسلاگ",
+        max_length=100,
+        unique=True,
+    )
+    
+    image = models.ImageField(
+        verbose_name="تصویر",
+        upload_to="categories/images/",
+        blank=True,
+        null=True,
+    )
+    
+    class Meta:
+        verbose_name = "دسته بندی"
+        verbose_name_plural = "دسته بندی ها"
+        
+    def __str__(self):
+        return self.category
 
 
 class Blog(models.Model):
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        verbose_name="دسته بندی",
+        related_name="Category"
+    )
     title = models.CharField(max_length=255, verbose_name="عنوان")
     slug = models.SlugField(max_length=255, verbose_name="اسلاگ")
     
