@@ -71,7 +71,7 @@ const ProjectsSection = () => {
         {filteredProjects.map(project => (
           <div key={project.id} className="shadow-custom-dark rounded-3xl flex flex-col justify-evenly p- w-full sm:w-full md:w-1/2 lg:w-1/3 gap-4">
             <div className="py-2 mt-4">
-              <span className="text-text shadow-custom-light text-xl font-bold pl-2 rounded-l-full bg-primary">{project.category}</span>
+              <span className="text-white shadow-custom-light text-xl font-bold pl-2 rounded-l-full bg-primary">{project.category}</span>
             </div>
             <div className="">
               <Image
