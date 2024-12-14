@@ -16,9 +16,9 @@ class BlogAdmin(admin.ModelAdmin):
     ordering = ['-created']  # Order by creation date descending
     fieldsets = (
         (None, {
-            'fields': ('title', 'slug', 'content', 'category')
+            'fields': ('title', 'slug', 'content', 'category', 'image')
         }),
-        ('اطلاعات اصلی', {
+        ('اطلاعات زمانی', {
             'fields': ('created', 'updated'),
             'classes': ('collapse',)  # Makes this section collapsible
         }),

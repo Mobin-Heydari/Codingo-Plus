@@ -53,7 +53,7 @@ const BlogSection = () => {
                             <a href="" className="rounded-md p-2">
                                 <h6 className="text-xl text-secondary hover:text-primary primary-transitsion font-bold">{blog.title}</h6>
                             </a>
-                            <p className="text-text text-justify">{blog.description}</p>
+                            <p className="text-text text-justify">{blog.content}</p>
                             <div className="flex justify-normal gap-5 font-bold p-2 my-2">
                                 <a href="" className="text-xl text-secondary font-bold p-2 px-2 hover:text-primary primary-transitsion">ادامه</a>
                             </div>
