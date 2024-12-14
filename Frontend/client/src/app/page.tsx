@@ -1,11 +1,12 @@
 import Image from "next/image";
 import codingo_poster from '../assets/imgs/home/codingo-poster.png';
 import web_card from '../assets/imgs/home/web.jpg';
-import testing from '../assets/imgs/home/testing.png';
-import server from '../assets/imgs/home/server.png'
-import coding from '../assets/imgs/home/coding.png'
-import ui_ux from '../assets/imgs/home/Ui-Ux.png'
-import support from '../assets/imgs/home/support.png'
+import testing from '../assets/imgs/icons/testing.png';
+import server from '../assets/imgs/icons/server.png';
+import coding from '../assets/imgs/icons/coding.png';
+import ui_ux from '../assets/imgs/icons/Ui-Ux.png';
+import support from '../assets/imgs/icons/support.png';
+import why_codingo from '../assets/imgs/home/why-codingo.png';
 
 import ProjectsSection from "@/components/ui/home/Projects-Section";
 import BlogSection from "@/components/ui/home/Blogs-Section";
@@ -223,6 +224,43 @@ export default function Home() {
             </div>
 
           </div>   
+      </section> 
+
+      {/* Why Codingo Section*/}
+      <section>
+        <div>
+          <Image src={why_codingo} alt="چرا کدینگو پلاس؟"/>
+        </div>
+
+        <div>
+          <h5>چرا کدینگو پلاس؟</h5>
+
+          <div>
+            <h6><span>1.</span>کیفیت بالا</h6>
+            <p>ما از آخرین استانداردهای سئو و تجربه کاربری برای طراحی وب‌سایت‌ های شما استفاده می‌کنیم که با تجارت و کسب و کار شما هماهنگ باشند.</p>
+          </div>
+
+          <div>
+            <h6><span>2.</span>طراحی خاص</h6>
+            <p>پلتفرم شما باید علاوه بر عملکردها، زیبایی هم داشته باشد. ما با طراحی متفکرانه و خلاقانه، وب‌سایتی را ایجاد می‌کنیم که بازدیدکنندگان را ترغیب به کاوش در صفحات کند.</p>
+          </div>
+
+          <div>
+            <h6><span>3.</span>پشتیبانی رایگان</h6>
+            <p>ما به شما پشتیبانی رایگان به مدت یک سال ارائه می‌دهیم. اگر سوالی دارید یا نیاز به راهنمایی دارید، همیشه در کنار شما هستیم.</p>
+          </div>
+
+          <div>
+            <h6><span>4.</span>تضمین عملکرد</h6>
+            <p> قبل از راه‌اندازی نهایی، پلتفرم را تست و ارزیابی می‌کنیم تا اطمینان حاصل شود که همه عملکردها به درستی کار می‌کنند و تجربه کاربری بهینه است.</p>
+          </div>
+
+          <div>
+            <h6><span>5.</span>سرعت بالا</h6>
+            <p>پلتفرم های ما بهینه‌شده‌اند تا سرعت بارگذاری صفحات به حداقل برسد. این امر به تجربه کاربری و همچنین بهبود سئو کمک می‌کند.</p>
+          </div>
+
+        </div>
       </section>
 
       <ProjectsSection></ProjectsSection>
