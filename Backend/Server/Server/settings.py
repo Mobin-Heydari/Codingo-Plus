@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'Authentication.apps.AuthenticationConfig',
     'ContactUs.apps.ContactusConfig',
     'Projects.apps.ProjectsConfig',
+    'FAQs.apps.FaqsConfig',
 ]
 
 MIDDLEWARE = [
