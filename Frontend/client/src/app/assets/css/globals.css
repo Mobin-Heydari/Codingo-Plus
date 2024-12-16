@@ -42,3 +42,12 @@ body {
 a {
   text-decoration: none;
 }
+
+details > summary {
+  list-style: none;
+}
+
+p {
+  word-wrap: break-word; /* Allows long words to break and wrap onto the next line */
+  overflow-wrap: break-word; /* Similar to word-wrap, for better compatibility */
+}

@@ -9,17 +9,17 @@ const BlogSection = () => {
     const [blogsData, setBlogsData] = useState<Blogs[]>([]);
 
     useEffect(() => {
-    const fetchProjects = async () => {
-        try {
-        const response = await fetch('http://localhost:8000/blogs/blog/'); // Adjust the URL as needed
-        const data: Blogs[] = await response.json();
-        setBlogsData(data);
-        } catch (error) {
-        console.error('Error fetching blogs:', error);
-        }
-    };
+        const fetchProjects = async () => {
+            try {
+            const response = await fetch('http://localhost:8000/blogs/blog/'); // Adjust the URL as needed
+            const data: Blogs[] = await response.json();
+            setBlogsData(data);
+            } catch (error) {
+            console.error('Error fetching blogs:', error);
+            }
+        };
 
-    fetchProjects();
+        fetchProjects();
     }, []);
 
     return (
@@ -53,7 +53,7 @@ const BlogSection = () => {
                             <a href="" className="rounded-md p-2">
                                 <h6 className="text-xl text-secondary hover:text-primary primary-transitsion font-bold">{blog.title}</h6>
                             </a>
-                            <p className="text-text text-justify">{blog.content}</p>
+                            <p className="text-text">{blog.content}</p>
                             <div className="flex justify-normal gap-5 font-bold p-2 my-2">
                                 <a href="" className="text-xl text-secondary font-bold p-2 px-2 hover:text-primary primary-transitsion">ادامه</a>
                             </div>

@@ -10,7 +10,7 @@ import why_codingo from '../assets/imgs/home/why-codingo.png';
 
 import ProjectsSection from "@/components/ui/home/Projects-Section";
 import BlogSection from "@/components/ui/home/Blogs-Section";
-
+import FaqSection from "@/components/ui/Faq-Section";
 
 
 
@@ -275,6 +275,7 @@ export default function Home() {
 
       <ProjectsSection></ProjectsSection>
       <BlogSection></BlogSection>
+      <FaqSection></FaqSection>
     </main>
   );
 }
