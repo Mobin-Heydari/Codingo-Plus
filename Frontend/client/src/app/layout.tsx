@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./assets/css/globals.css";
 import Image from 'next/image';
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/footer";
+import Header from "@/components/layouts/Header";
+import Footer from "@/components/layouts/footer";
 
 export const metadata: Metadata = {
   title: "کدینگو",
