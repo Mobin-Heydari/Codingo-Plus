@@ -21,8 +21,6 @@ const BlogDetailPage: FC<BlogDetailPageProps> = async ({ params }) => {
 
     return (
         <main>
-            <h1>{data.title}</h1> {/* Assuming the data has a title property */}
-            <p>{data.content}</p> {/* Assuming the data has a content property */}
         </main>
     );
 };
