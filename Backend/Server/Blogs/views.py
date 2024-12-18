@@ -27,7 +27,7 @@ class BlogViewSet(ViewSet):
     # Method to handle GET requests for retrieving a specific blog by its primary key (pk)
     def retrieve(self, request, pk):
         # Fetch the Blog instance or return a 404 error if not found
-        blog = get_object_or_404(Blog, pk=slug)
+        blog = get_object_or_404(Blog, slug=pk)
         
         # Serialize the specific blog instance
         serializer = BlogSerializer(blog)
