@@ -82,7 +82,7 @@ const BlogSection = () => {
               </div>
             </div>
             <div className="flex justify-normal p-2 m-2 border-t-2 border-t-primary">
-              <p className="text-text text-lg font-bold">{blog.created_at}</p>
+              <p className="text-text text-lg font-bold">{blog.created}</p>
             </div>
           </div>
         ))}

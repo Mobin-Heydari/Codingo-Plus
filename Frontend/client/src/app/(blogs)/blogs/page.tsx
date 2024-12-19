@@ -1,15 +1,18 @@
-import next from "next";
-import { Blogs } from "@/types/blog";
+import React from 'react';
+import NewBlogs from '@/components/ui/blogs/New-Blogs';
+import { BlogProvider } from '@/contexts/Blog-Context-Data';
+import BlogsCategories from '@/components/ui/blogs/Catgories';
 
-import BlogsCategories from "@/components/ui/blogs/Catgories";
 
-export default async function BlogsPage() {
-  const data = await fetch("http://127.0.0.1:8000/blogs/blog/");
-  const Blogs = await data.json();
-
+const BlogPage: React.FC = () => {
   return (
-    <main>
-      <BlogsCategories></BlogsCategories>
-    </main>
-  )
-}
+      <section className="flex flex-col p-8 justify-around max-sm:p-2 my-12"> {/* Main section for the blog page */}
+        <BlogsCategories />
+        <BlogProvider>
+          <NewBlogs /> {/* Render the NewestBlogs component to display the latest blog posts */}
+        </BlogProvider>
+      </section>
+  );
+};
+
+export default BlogPage; // Export the BlogPage component for use in the application

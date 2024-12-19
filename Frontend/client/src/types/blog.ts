@@ -6,6 +6,6 @@ export interface Blogs {
     url: string;
     category: string;
     slug: string;
-    updated_at: string;
-    created_at: string;
+    updated: string;
+    created: string;
 }
