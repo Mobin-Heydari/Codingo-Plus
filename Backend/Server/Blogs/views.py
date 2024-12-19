@@ -6,20 +6,24 @@ from rest_framework.status import *
 
 from .models import Blog, BlogSection, Category
 from .serializers import BlogSerializer, BlogSectionSerializer, CategorySerializer
+from .paginations import BlogPagination
 
 
 
 
 # ViewSet for handling Blog-related requests
-class BlogViewSet(ViewSet):
+class BlogViewSet(ViewSet, BlogPagination):
     
     # Method to handle GET requests for listing all blogs
     def list(self, request):
         # Retrieve all Blog instances from the database
-        blogs = Blog.objects.all()
+        queryset = Blog.objects.all()
+        
+        # Paginate the queryset data using paginator
+        result = self.paginate_queryset(queryset, request)
         
         # Serialize the blog instances using the BlogSerializer
-        serializer = BlogSerializer(blogs, many=True)
+        serializer = BlogSerializer(result, many=True)
         
         # Return the serialized data as a response
         return Response(serializer.data)
