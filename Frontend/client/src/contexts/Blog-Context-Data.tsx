@@ -6,26 +6,31 @@ import { Blogs } from '@/types/blog';
 
 // Define the structure of the BlogContext
 interface BlogContextType {
-    blogs: Blogs[]; // Array of blog posts
-    getNewBlogs: () => Blogs[]; // Function to get the newest blogs
+    blogs: Blogs[];
+    totalBlogs: number; // Add totalBlogs to the type
+    blogsPerPage: number;
+    getNewBlogs: (currentPage: number) => Blogs[];
 }
+
 
 // Create the BlogContext
 const BlogContext = createContext<BlogContextType | undefined>(undefined);
 
 // BlogProvider component to provide context to children
-export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [blogs, setBlogs] = useState<Blogs[]>([]); // State to hold blog posts
+const BlogProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [blogs, setBlogs] = useState<Blogs[]>([]);
+    const [totalBlogs, setTotalBlogs] = useState<number>(0); // New state for total blogs
+    const blogsPerPage = 12; // Set the number of blogs per page
 
-    // Fetch blogs from the API when the component mounts
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
                 const response = await fetch('http://localhost:8000/blogs/blog/');
                 const data = await response.json();
                 setBlogs(data); // Set the fetched blogs to state
+                setTotalBlogs(data.length); // Set total number of blogs
             } catch (error) {
-                console.error(error); // Log any errors
+                console.error(error);
             }
         };
         fetchBlogs();
@@ -38,14 +43,12 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({ children
             .slice(0, 6); // Get the 6 newest blogs
     };
 
-    // Provide the context values to children
     return (
-        <BlogContext.Provider value={{ blogs, getNewBlogs }}>
+        <BlogContext.Provider value={{ blogs, totalBlogs, blogsPerPage, getNewBlogs }}>
             {children}
         </BlogContext.Provider>
     );
 };
-
 // Custom hook to use the BlogContext
 export const useBlogContext = () => {
     const context = useContext(BlogContext);
@@ -54,3 +57,5 @@ export const useBlogContext = () => {
     }
     return context; // Return the context
 };
+
+export default BlogProvider;

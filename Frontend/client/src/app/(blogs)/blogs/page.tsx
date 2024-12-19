@@ -1,7 +1,8 @@
 import React from 'react';
 import NewBlogs from '@/components/ui/blogs/New-Blogs';
-import { BlogProvider } from '@/contexts/Blog-Context-Data';
+import BlogProvider from '@/contexts/Blog-Context-Data';
 import BlogsCategories from '@/components/ui/blogs/Catgories';
+import BlogsPaginator from '@/components/ui/blogs/Blogs-Pagination';
 
 
 const BlogPage: React.FC = () => {
@@ -10,6 +11,7 @@ const BlogPage: React.FC = () => {
         <BlogsCategories />
         <BlogProvider>
           <NewBlogs /> {/* Render the NewestBlogs component to display the latest blog posts */}
+          <BlogsPaginator />
         </BlogProvider>
       </section>
   );

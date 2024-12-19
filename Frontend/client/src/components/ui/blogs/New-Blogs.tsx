@@ -5,7 +5,7 @@ import React from 'react';
 import { useBlogContext } from '@/contexts/Blog-Context-Data';
 import Image from 'next/image';
 
-const NewestBlogs: React.FC = () => {
+const NewBlogs: React.FC = () => {
     const { getNewBlogs } = useBlogContext(); // Get the function to retrieve the newest blogs from context
     const newBlogs = getNewBlogs(); // Call the function to get the newest blogs
 
@@ -59,4 +59,4 @@ const NewestBlogs: React.FC = () => {
     );
 };
 
-export default NewestBlogs; // Export the component for use in other parts of the application
+export default NewBlogs; // Export the component for use in other parts of the application
