@@ -3,7 +3,12 @@ import phoneIcon from "../../assets/imgs/icons/phone.png";
 import emailIcon from "../../assets/imgs/icons/email.png";
 import instagramIcon from "../../assets/imgs/icons/instagram.png";
 import telegramIcon from "../../assets/imgs/icons/telegram.png";
-import mapImage from "../../assets/imgs/contact/map.png"; // Assuming you have a map image
+import mapImage from "../../assets/imgs/contact/map.png";
+
+import ContactsForm from "@/components/ui/contacts/Contacts-Form";
+
+
+
 
 export default function ContactUs() {
     return (
@@ -41,6 +46,10 @@ export default function ContactUs() {
                         <Image src={mapImage} alt="نقشه زمین" className="max-w-full h-auto" />
                     </div>
                 </div>
+            </section>
+            {/* Contacts form section */}
+            <section>
+                <ContactsForm />
             </section>
         </main>
     );
