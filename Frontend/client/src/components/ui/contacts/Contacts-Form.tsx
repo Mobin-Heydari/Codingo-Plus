@@ -1,11 +1,10 @@
 "use client";
 
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import ContactsServer from '@/components/server/contacts/Contact-API';
 
-// Define the FormData interface with full_name
 interface FormData {
     full_name: string;
     email: string;
@@ -15,33 +14,59 @@ interface FormData {
 
 const ContactsForm: React.FC = () => {
     const initialValues: FormData = {
-        full_name: '', // Initialize full_name
+        full_name: '',
         email: '',
         message: '',
-        phone: '' // Initialize phone
+        phone: ''
     };
 
     const validationSchema = Yup.object({
-        full_name: Yup.string().required('Name is required'), // Update to match the new property
+        full_name: Yup.string().required('لطفا نام خود را وارد کنید'),
         email: Yup.string()
-            .email('Invalid email format')
-            .required('Email is required'),
-        message: Yup.string().required('Message is required'),
+            .email('فرمت ایمیل صحیح نیست')
+            .required('لطفا ایمیل خود را وارد کنید'),
+        message: Yup.string().required('پیام خود را با در اشتراک بگذارید'),
         phone: Yup.string()
-            .length(11, 'Phone number must be exactly 11 digits')
-            .matches(/^\d+$/, 'Phone number must be digits only')
-            .required('Phone number is required')
+            .length(11, 'شماره تلفن خود را 11 رقمی وارد کنید')
+            .matches(/^\d+$/, 'فقط اعداد را وارد کنید')
+            .required('شماره تلفن خود را وارد کنید')
     });
 
     const handleSubmit = async (values: FormData, { setSubmitting, resetForm }: any) => {
         try {
-            await ContactsServer.postContact(values); // Call the post function
-            resetForm(); // Reset the form after successful submission
+            await ContactsServer.postContact(values);
+            resetForm();
         } catch (error) {
             console.error('Error posting contact data:', error);
         } finally {
-            setSubmitting(false); // Set submitting to false after submission
+            setSubmitting(false);
         }
+    };
+
+    const TextareaAutoResize = ({ field, form }: any) => {
+        const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+        const adjustHeight = () => {
+            if (textareaRef.current) {
+                textareaRef.current.style.height = 'auto'; // Reset height
+                textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Set to scroll height
+            }
+        };
+
+        useEffect(() => {
+            adjustHeight(); // Adjust height on mount
+        }, []);
+
+        return (
+            <textarea
+                {...field}
+                ref={textareaRef}
+                onInput={adjustHeight}
+                placeholder="پیام محترم شما"
+                className="p-3 border border-primary rounded-2xl resize-none overflow-hidden"
+                style={{ minHeight: '50px', maxHeight: '300px' }} // Set min and max height
+            />
+        );
     };
 
     return (
@@ -51,26 +76,50 @@ const ContactsForm: React.FC = () => {
             onSubmit={handleSubmit}
         >
             {({ isSubmitting }) => (
-                <Form>
-                    <div>
-                        <Field type="text" name="full_name" placeholder="Your Name" />
-                        <ErrorMessage name="full_name" component="div" />
+                <Form className="flex flex-col items-center p-5">
+                    <div className="grid grid-cols-1 gap-4 w-full max-w-lg max-md:w-full">
+                        <div className="flex flex-col gap-2">
+                            <Field
+                                type="text"
+                                name="full_name"
+                                placeholder="نام شما"
+                                className="p-3 border border-secondary rounded-xl h-12"
+                            />
+                            <ErrorMessage name="full_name" component="div" className="text-red-500 text-sm" />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <Field
+                                type="email"
+                                name="email"
+                                placeholder="ایمیل شما"
+                                className="p-3 border border-secondary rounded-xl h-12"
+                            />
+                            <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <Field
+                                type="text"
+                                name="phone"
+                                placeholder="شماره تماس شما"
+                                className="p-3 border border-secondary rounded-xl h-12 w-full"
+                                style={{ width: '100%' }} // Full width
+                            />
+                            <ErrorMessage name="phone" component="div" className="text-red-500 text-sm" />
+                        </div>
                     </div>
-                    <div>
-                        <Field type="email" name="email" placeholder="Your Email" />
-                        <ErrorMessage name="email" component="div" />
+                    <div className="flex flex-col gap-2 w-full max-w-lg mt-4">
+                        <Field name="message" component={TextareaAutoResize}/>
+                        <ErrorMessage name="message" component="div" className="text-red-500 text-sm" />
                     </div>
-                    <div>
-                        <Field as="textarea" name="message" placeholder="Your Message" />
-                        <ErrorMessage name="message" component="div" />
+                    <div className="flex justify-center w-full mt-4">
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`w-full md:w-1/4 p-2 text-white rounded-md ${isSubmitting ? 'bg-gray-400' : 'bg-secondary hover:bg-primary'} focus:outline-none`}
+                        >
+                            ارسال
+                        </button>
                     </div>
-                    <div>
-                        <Field type="text" name="phone" placeholder="Your Phone Number" />
-                        <ErrorMessage name="phone" component="div" />
-                    </div>
-                    <button type="submit" disabled={isSubmitting}>
-                        Submit
-                    </button>
                 </Form>
             )}
         </Formik>

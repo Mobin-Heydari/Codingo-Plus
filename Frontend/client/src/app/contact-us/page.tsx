@@ -48,8 +48,15 @@ export default function ContactUs() {
                 </div>
             </section>
             {/* Contacts form section */}
-            <section>
-                <ContactsForm />
+            <section className="flex flex-col justify-between gap-8 my-12">
+                <h2 className="text-3xl text-secondary text-center font-bold p-3">فرم تماس با ما</h2>
+                <p className="text-xl text-primary text-center font-bold p-3">نظرات وانتقادات خود را با ما به اشتراک بگذارید:)</p>
+                <div className="">
+                    <ContactsForm />
+                </div>
+                <p className="p-2 m-3 text-bold text-secondary text-center">
+                    تمامی حقوق و اطلاعات شما نزد ما محفوظ می ماند.
+                </p>
             </section>
         </main>
     );
