@@ -14,7 +14,7 @@ export default function ContactUs() {
     return (
         <main>
             <section className="flex flex-col justify-between gap-8 shadow-custom-light">
-                <h2 className="text-2xl text-secondary text-center font-bold p-3">تماس با ما</h2>
+                <h1 className="text-2xl text-secondary text-center font-bold p-3">تماس با ما</h1>
                 <div className="flex-1 flex flex-row p-2 m-3 gap-5 max-md:flex-col">
                     <div className="grid grid-cols-1 gap-2 p-2 m-3 w-2/5 max-md:w-full">
                         <div className="flex items-center p-3 m-2 shadow-custom-light rounded-2xl h-24 font-bold hover:shadow-custom-dark cursor-pointer primary-transitsion hover:brightness-110">
