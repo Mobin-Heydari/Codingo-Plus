@@ -1,35 +1,6 @@
 from django.db import models
 
-
-
-class Category(models.Model):
-    
-    category = models.CharField(
-        verbose_name="دسته بندی",
-        max_length=100,
-        unique=True,
-    )
-    
-    slug = models.SlugField(
-        verbose_name="اسلاگ",
-        max_length=100,
-        unique=True,
-    )
-    
-    image = models.ImageField(
-        verbose_name="تصویر",
-        upload_to="categories/images/",
-        blank=True,
-        null=True,
-    )
-    
-    class Meta:
-        verbose_name = "دسته بندی"
-        verbose_name_plural = "دسته بندی ها"
-        
-    def __str__(self):
-        return self.category
-    
+from Services.models import MainServices, SubService
 
 
 
@@ -41,10 +12,17 @@ class Project(models.Model):
         PENDING = 'Pending', 'در انتظار'
         CANCELED = 'Canceled', 'لغو شده'
     
-    category = models.ForeignKey(
-        Category,
+    main_service = models.ForeignKey(
+        MainServices,
         on_delete=models.CASCADE,
-        verbose_name="Category",
+        related_name='projects',
+        verbose_name='سرویس اصلی',
+    )
+    sub_service = models.ForeignKey(
+        SubService,
+        on_delete=models.CASCADE,
+        related_name='projects',
+        verbose_name='سرویس فرعی',
     )
         
     title = models.CharField(max_length=200, verbose_name="عنوان")

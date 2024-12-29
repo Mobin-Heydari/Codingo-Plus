@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Project, Category
+from .models import Project
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'created_at', 'updated_at')
@@ -10,8 +10,3 @@ class ProjectAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}  # If you have a slug field
 
 admin.site.register(Project, ProjectAdmin)
-
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['category', 'slug']
-    prepopulated_fields = {'slug': ('category',)}

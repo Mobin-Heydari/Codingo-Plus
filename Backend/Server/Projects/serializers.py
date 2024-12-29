@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Project, Category
+from .models import Project
 from Server.settings import ALLOWED_HOSTS
 
 
@@ -32,9 +32,3 @@ class ProjectSerializer(serializers.ModelSerializer):
     def get_category(self, obj):
         # Return the category name associated with the project
         return obj.category.category
-    
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category  # Specify the model to serialize
-        fields = "__all__"  # Include all fields from the model

@@ -12,7 +12,6 @@ app_name = "Projects"
 router = DefaultRouter()
 
 router.register(r'projects', views.ProjectViewSet, basename="projects")
-router.register(r'categories', views.CategoryViewSet, basename="category")
 
 urlpatterns = [
    path('', include(router.urls))
