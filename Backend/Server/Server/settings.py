@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'Projects.apps.ProjectsConfig',
     'FAQs.apps.FaqsConfig',
     'Services.apps.ServicesConfig',
+    'Plans.apps.PlansConfig',
 ]
 
 MIDDLEWARE = [
@@ -73,7 +74,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'Server.urls'
 
 TEMPLATES = [
-    {
+    { 
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
