@@ -31,7 +31,7 @@ class SubService(models.Model):
     
 
 
-class SubServiceFeatures(models.Model):
+class Feature(models.Model):
     
     sub_service = models.ForeignKey(
         SubService,
