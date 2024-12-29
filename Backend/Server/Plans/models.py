@@ -1,8 +1,6 @@
 from django.db import models
 from Services.models import SubService, Feature
 
-
-
 class MainPlans(models.Model):
     # Represents the main service plans available.
     name = models.CharField(max_length=255, verbose_name="اسم")  # Name of the main plan.
@@ -15,8 +13,8 @@ class MainPlans(models.Model):
         return self.name  # Returns the name of the plan for display.
 
     class Meta:
-        verbose_name = "Plan"  # Singular name for the model.
-        verbose_name_plural = "Plans"  # Plural name for the model.
+        verbose_name = "پلن اصلی"  # Persian for "Main Plan"
+        verbose_name_plural = "پلن های اصلی"  # Persian for "Main Plans"
 
 
 class ServicePlan(models.Model):
@@ -36,8 +34,8 @@ class ServicePlan(models.Model):
         return f"{self.main_plan.name} - {self.sub_service.name}"  # Returns a string representation of the service plan.
 
     class Meta:
-        verbose_name = "Service Plan"  # Singular name for the model.
-        verbose_name_plural = "Service Plans"  # Plural name for the model.
+        verbose_name = "پلن سرویس"  # Persian for "Service Plan"
+        verbose_name_plural = "پلن های سرویس"  # Persian for "Service Plans"
 
 
 class PlanSupport(models.Model):
@@ -55,8 +53,8 @@ class PlanSupport(models.Model):
         return f"{self.plan} - Free Support: {self.free_support}"  # Returns a string representation of the support details.
 
     class Meta:
-        verbose_name = "Support"  # Singular name for the model.
-        verbose_name_plural = "Supports"  # Plural name for the model.
+        verbose_name = "پشتیبانی"  # Persian for "Support"
+        verbose_name_plural = "پشتیبانی ها"  # Persian for "Supports"
 
 
 class PlansFeature(models.Model):
@@ -79,8 +77,8 @@ class PlansFeature(models.Model):
         return f"{self.features.name} - Status: {'Active' if self.status else 'Inactive'}"  # Returns a string representation of the feature.
 
     class Meta:
-        verbose_name = 'Service Feature'  # Singular name for the model.
-        verbose_name_plural = 'Service Features'  # Plural name for the model.
+        verbose_name = 'ویژگی سرویس'  # Persian for "Service Feature"
+        verbose_name_plural = 'ویژگی های سرویس'  # Persian for "Service Features"
 
 
 class PlanPrice(models.Model):
@@ -93,11 +91,10 @@ class PlanPrice(models.Model):
     )
     min_price = models.BigIntegerField(verbose_name="کف قیمت")  # Minimum price for the service plan.
     max_price = models.BigIntegerField(verbose_name="بالاترین قیمت")  # Maximum price for the service plan.
-    payment_steps = models.IntegerField(verbose_name="تعداد مراحل پرداخت")  # Number of payment steps for the plan.
-
+    payment_steps = models.IntegerField(verbose_name="تعداد مراحل پرداخت")  # Number of payment steps for the plan
     def __str__(self):
-        return f"{self.plan} - Price Range: {self .min_price} to {self.max_price}"  # Returns a string representation of the pricing details.
+        return f"{self.plan} - Price Range: {self.min_price} to {self.max_price}"  # Returns a string representation of the pricing details.
 
     class Meta:
-        verbose_name = "Plan Price"  # Singular name for the model.
-        verbose_name_plural = "Plan Prices"  # Plural name for the model.
+        verbose_name = "قیمت پلن"  # Persian for "Plan Price"
+        verbose_name_plural = "قیمت های پلن"  # Persian for "Plan Prices"
