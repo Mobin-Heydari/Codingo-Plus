@@ -39,6 +39,10 @@ class SubService(models.Model):
     def __str__(self):
         # String representation of the model
         return self.name
+    
+    class Meta:
+        verbose_name = "سرویس زیر مجموعه"
+        verbose_name_plural = "سرویس های زیر مجموعه"
 
 
 class Feature(models.Model):
@@ -58,3 +62,7 @@ class Feature(models.Model):
     def __str__(self):
         # String representation of the model
         return self.title
+    
+    class Meta:
+        verbose_name = "ویژگی"
+        verbose_name_plural = "ویژگی ها"
