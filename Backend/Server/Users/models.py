@@ -14,6 +14,7 @@ class User(AbstractBaseUser , PermissionsMixin):
     
     class UserTypes(models.TextChoices):
         SIMPLE_USER = "SMP", "کاربر ساده"
+        CUSTOMER = "CUS", "مشتری"
         EMPLOYEE = "EMP", "کارمند"
         ADMIN = "ADM", "مدیر"
 
